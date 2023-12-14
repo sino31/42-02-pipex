@@ -1,0 +1,7 @@
+apple3
+banana
+apple2
+cherry
+banana
+cherry
+apple1
