@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
+/*   By: ashigema <ashigema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:07 by ashigema          #+#    #+#             */
-/*   Updated: 2023/12/14 11:07:32 by shigematsua      ###   ########.fr       */
+/*   Updated: 2023/12/15 18:14:49 by ashigema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	initialize(int argc, char *argv[], int inout_fds[2], pid_t **ret)
 	}
 	if (inout_fds[0] < 0 || inout_fds[1] < 0)
 		exit_with_error("file");
-	if (ft_strncmp(argv[1], "here_doc", 8) == 0)
-		return (4);
-	return (3);
+	if (ft_strcmp(argv[1], "here_doc") == 0)
+		return (3);
+	return (2);
 }
 
 static void	wait_for_child_processes(void)
@@ -66,14 +66,13 @@ int	main(int argc, char *argv[], char *envp[])
 	j = 0;
 	while (i < argc - 2)
 	{
-		close(pipe_fd[0]);
 		if (pipe(pipe_fd) < 0)
 			exit_with_error("pipe");
-		ret[j] = fork_and_execute_command(inout_fds[0], pipe_fd[1], argv[i],
+		ret[j++] = fork_and_execute_command(inout_fds[0], pipe_fd[1], argv[i],
 				envp);
+		close(inout_fds[0]);
 		inout_fds[0] = pipe_fd[0];
 		close(pipe_fd[1]);
-		j++;
 		i++;
 	}
 	ret[j] = fork_and_execute_command(inout_fds[0], inout_fds[1], argv[i],

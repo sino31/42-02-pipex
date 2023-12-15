@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
+/*   By: ashigema <ashigema@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 19:20:05 by ashigema          #+#    #+#             */
-/*   Updated: 2023/12/01 11:27:35 by shigematsua      ###   ########.fr       */
+/*   Updated: 2023/12/15 18:09:10 by ashigema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ char	*trim_saved_line(char *saved_line, size_t len)
 
 char	*get_next_line(int fd)
 {
-	static char	*saved_line;
+	static char	*saved_line = NULL;
 	char		*line;
+	char		*tmp;
 
-	saved_line = NULL;
 	if (fd > OPEN_MAX - 1 || fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!saved_line)
@@ -131,7 +131,10 @@ char	*get_next_line(int fd)
 	line = extract_line_from_saved(saved_line);
 	if (!line)
 		return (NULL);
+	tmp = saved_line;
 	saved_line = trim_saved_line(saved_line, ft_strlen(line));
+	if (!tmp)
+		free(tmp);
 	if (!saved_line)
 		return (NULL);
 	return (line);
