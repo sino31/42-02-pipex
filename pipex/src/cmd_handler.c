@@ -6,13 +6,13 @@
 /*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:08:58 by shigematsua       #+#    #+#             */
-/*   Updated: 2023/12/01 11:18:39 by shigematsua      ###   ########.fr       */
+/*   Updated: 2023/12/16 22:47:14 by shigematsua      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static char	*extract_cmd_name(const char *str)
+char	*extract_cmd_name(const char *str)
 {
 	char	*cmd_name;
 	size_t	len;
@@ -27,7 +27,7 @@ static char	*extract_cmd_name(const char *str)
 	return (cmd_name);
 }
 
-static void	run_command(char *argv, char **envp)
+void	run_command(char *argv, char **envp)
 {
 	char	*abs_path;
 	char	**args;

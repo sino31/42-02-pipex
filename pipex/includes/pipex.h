@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashigema <ashigema@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:16:42 by ashigema          #+#    #+#             */
-/*   Updated: 2023/12/13 20:31:04 by ashigema         ###   ########.fr       */
+/*   Updated: 2023/12/16 22:48:05 by shigematsua      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,22 @@ void	free_2d_array(char **array);
 void	exit_with_error(char *err);
 
 // get_cmd_path.c
+char	*extract_path_from_env(char *envp[]);
+char	*find_executable_in_path(char *cmd, char *env_path);
 char	*get_cmd_path(char *cmd, char *envp[]);
 
 // cmd_handler.c
+char	*extract_cmd_name(const char *str);
+void	run_command(char *argv, char **envp);
 pid_t	fork_and_execute_command(int fdin, int fdout, char *cmd, char **envp);
 
 // heredoc.c
+char	*process_stdin(char *argv[], char *line, char *tmp);
 int		here_doc(char *argv[]);
 
 // main.c
+int	initialize(int argc, char *argv[], int inout_fds[2], pid_t **ret);
+void	wait_for_child_processes(void);
 int		main(int argc, char *argv[], char *envp[]);
 
 #endif

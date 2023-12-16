@@ -6,13 +6,13 @@
 /*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:00:27 by shigematsua       #+#    #+#             */
-/*   Updated: 2023/11/24 20:10:15 by shigematsua      ###   ########.fr       */
+/*   Updated: 2023/12/16 22:46:43 by shigematsua      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static char	*extract_path_from_env(char *envp[])
+char	*extract_path_from_env(char *envp[])
 {
 	size_t	i;
 
@@ -26,7 +26,7 @@ static char	*extract_path_from_env(char *envp[])
 	return (NULL);
 }
 
-static char	*find_executable_in_path(char *cmd, char *env_path)
+char	*find_executable_in_path(char *cmd, char *env_path)
 {
 	char	**path;
 	char	*full_path;

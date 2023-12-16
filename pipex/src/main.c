@@ -6,13 +6,13 @@
 /*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:07 by ashigema          #+#    #+#             */
-/*   Updated: 2023/12/16 22:30:12 by shigematsua      ###   ########.fr       */
+/*   Updated: 2023/12/16 22:48:00 by shigematsua      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static int	initialize(int argc, char *argv[], int inout_fds[2], pid_t **ret)
+int	initialize(int argc, char *argv[], int inout_fds[2], pid_t **ret)
 {
 	if (argc < 4)
 	{
@@ -40,7 +40,7 @@ static int	initialize(int argc, char *argv[], int inout_fds[2], pid_t **ret)
 	return (2);
 }
 
-static void	wait_for_child_processes(void)
+void	wait_for_child_processes(void)
 {
 	int		status;
 	pid_t	wpid;
@@ -83,7 +83,7 @@ int	main(int argc, char *argv[], char *envp[])
 	free(ret);
 }
 
-__attribute__((destructor)) static void destructor()
-{
-	system("leaks -q pipex");
-}
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks -q pipex");
+// }
