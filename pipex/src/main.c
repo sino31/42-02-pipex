@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashigema <ashigema@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shigematsuaono <shigematsuaono@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:07 by ashigema          #+#    #+#             */
-/*   Updated: 2023/12/15 18:14:49 by ashigema         ###   ########.fr       */
+/*   Updated: 2023/12/16 22:30:12 by shigematsua      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int argc, char *argv[], char *envp[])
 	free(ret);
 }
 
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q pipex");
-// }
+__attribute__((destructor)) static void destructor()
+{
+	system("leaks -q pipex");
+}
